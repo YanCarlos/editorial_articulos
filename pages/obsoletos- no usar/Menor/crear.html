@@ -1,0 +1,141 @@
+<section class="content-header">
+
+    <ol class="breadcrumb">
+        <li><a href="#menor/Listar"><i class="fa fa-user"></i> Menor</a></li>
+        <li class="active">Registro</li>
+    </ol>
+</section>
+
+<section class="content" ng-controller="menorController" ng-init="listarDepartamentos(); listarEPS(); listarGrupoSocial(); listarUnidades();">
+    <h3 style="text-align: center;"><b>Registro del menor</b></h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-10">
+          <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" ng-submit="registrar();">
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="nombre">Nombre(s) del menor</label>
+                      <input class="form-control" type="text" required placeholder="Nombre(s) del menor" ng-model="nombre">
+                  </div>
+                    <div class="form-group" style="margin-right:0%;">
+                      <label for="fecha">Fecha de nacimiento del menor</label>
+                      <input class="form-control" type="date" required placeholder="Fecha de nacimiento del menor" ng-model="fecha">
+                  </div>
+                  <div class="form-group" style="margin-right:0%; margin-bottom:0px;">
+                    <label for="depto">Lugar de nacimiento del menor</label>
+                    <div class="row">
+                      <div class="col-md-6" style="padding-right:1.6px;">
+                        <select ng-model="departamento" class="form-control col-md-7 col-xs-12" ng-change="listarMunicipios();" required>
+                          <option selected disabled  value="">Seleccione departamento</option>
+                          <option ng-repeat="obj in departamentos" value="{{obj.id_departamento}}" >{{obj.nombre}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6" style="padding-left:0px;">
+                        <select ng-model="municipio" class="form-control col-md-7 col-xs-12" required>
+                          <option selected disabled  value="">Seleccione una ciudad</option>
+                          <option ng-repeat=" obj in municipios" value="{{obj.id_municipio}}" >{{obj.nombre}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="form-group" style="margin-right:0%; margin-bottom:0px;">
+                    <div class="row">
+                      <div class="col-md-6" style="padding-right:1.6px;">
+                        <label for="tiempo">Tiempo desparacitacion</label>
+                      <input class="form-control" type="number" required placeholder="Tiempo desparacitación" ng-model="tiempo">
+                      </div>
+                      <div class="col-md-6" style="padding-left:0px;">
+                        <label for="unidad">Unidad tiempo</label>
+                        <select ng-model="unidad" class="form-control col-md-7 col-xs-12" required>
+                          <option selected disabled  value="">Seleccione una unidad</option>
+                          <option ng-repeat=" obj in unidades" value="{{obj.id_unidad_tiempo}}" >{{obj.unidad}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="telefono">Nombre(s) de madre</label>
+                      <input class="form-control" type="text" required placeholder="Nombre de la madre" ng-model="nombreMadre">
+                  </div>
+                 <div class="form-group" style="margin-right:0%;">
+                      <label for="cedula">Nombre(s) del padre</label>
+                      <input class="form-control" type="text" required placeholder="Nombres del padre" ng-model="nombrePadre">
+                  </div>
+                 
+                  
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="apellidos">Apellidos del menor</label>
+                      <input class="form-control" type="text" required placeholder="Apellidos del menor" ng-model="apellidos">
+                  </div>
+                  <div class="form-group" style="margin-right:0%;">
+                   
+                    <div class="row">
+                      <div class="col-md-6" style="padding-right:1.6px;">
+                        <label for="peso">Peso de nacimiento (kg)</label>
+                      <input class="form-control" type="number" required placeholder="Peso del menor" ng-model="peso">
+                      </div>
+                      <div class="col-md-6" style="padding-left:0px;">
+                        <label for="talla">Talla de nacimiento</label>
+                      <input class="form-control" type="number" required placeholder="Talla del menor" ng-model="talla">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-right:0%; margin-bottom:0px;">
+                    <label for="gruposocial">Grupo social y EPS del menor</label>
+                    <div class="row">
+                      <div class="col-md-6" style="padding-right:1.6px;">
+                        <select ng-model="grupo" class="form-control col-md-7 col-xs-12" required>
+                          <option selected disabled  value="">Seleccione grupo social</option>
+                          <option ng-repeat=" obj in grupos" value="{{obj.id_grupo_social}}" >{{obj.nombre}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6" style="padding-left:0px;">
+                        <select ng-model="eps" class="form-control col-md-7 col-xs-12" required>
+                          <option selected disabled  value="">Seleccione una eps</option>
+                          <option ng-repeat=" obj in epss" value="{{obj.id_eps}}" >{{obj.nombre}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="telefono">Telefono del acudiente</label>
+                      <input class="form-control" type="phone" min="0" required placeholder="Telefono del acudiente" ng-model="telefono">
+                  </div>
+               
+                  <div class="form-group" style="margin-right:0%;     margin-top: 20px;">
+                      <label for="cedulaMadre">Cedula de la madre</label>
+                      <input class="form-control" type="number" required placeholder="Cedula de la madre del menor" ng-model="cedulaMadre">
+                  </div>
+                  <div class="form-group" style="margin-right:0%; margin-bottom:20px;">
+                      <label for="cedulaPadre">Cedula del padre</label>
+                      <input class="form-control" type="text" required placeholder="Cedula del padre del menor" ng-model="cedulaPadre">
+                  </div>
+                 
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <label ng-class='{"classError": colorText=="error", "classSuccess":colorText=="success"}'>{{msj}}</label>
+            </div>
+            <div class="col-md-2">
+              <input type="button" class="btn btn-primary btn-block btn-flat" ng-click="limpiar();" value="Limpiar"/>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-success btn-block btn-flat" type="submit">
+                Registrar
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,0 +1,55 @@
+<section class="content-header">
+    <h1>
+        
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#/Cargo/Listar"><i class="fa fa-tasks"></i> Cargos</a></li>
+        <li class="active">Registro</li>
+    </ol>
+</section>
+
+<section class="content" ng-controller="cargoController" ng-init="">
+    <h3 style="text-align: center;"><b>Registro de cargo</b></h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            
+        </div>
+        <div class="col-md-7">
+          <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" ng-submit="registrar();">
+            <div class="row">
+            <div class="col-md-9">
+              <div class="form-group" style="margin-right: 2%;">
+                <label for="nombre">Nombre</label>
+                <input class="form-control"  type="text" required  ng-model="nombre"/>
+              </div>
+            </div>
+          
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <textarea class="form-control" style="max-width:100%; width:100%; min-height:150px" type="text" required  ng-model="descripcion"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+               <label ng-class='{"classError": colorText=="error", "classSuccess":colorText=="success"}'>{{msj}}</label>
+            </div>
+            <div class="col-md-3">
+              <input type="button" class="btn btn-primary btn-block btn-flat" ng-click="limpiar();" value="Cancelar"/>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-success btn-block btn-flat" type="submit">
+                Registrar
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

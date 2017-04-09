@@ -1,0 +1,82 @@
+<header class="main-header">
+    <a href="#" class="logo">
+      <span class="logo-mini" style=" font-size: 1em;"><b>E</b>D</span>
+      <span class="logo-lg" style=" font-size: 1.6em;"><b>E</b>ditorial</span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="btn-group" role="group" ng-controller="CtlLogIn" ng-init="cargarUsuario()" >
+        <ul class="nav nav-pills altura-total">
+          <li role="presentation" class="dropdown altura-total" >
+            <a class="dropdown-toggle altura-total" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Hola, {{usuario.nombre}} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#/editarperfil">Editar perfil</a></li>
+              <li><a ng-click="logOut()" href="#">Cerrar sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    </nav>
+  </header>
+
+<!-- Estilos para el boton del menu donde esta cerrar sesion y editar perfil-->
+
+  <style type="text/css">
+    
+    .altura-total{
+      height: 100%;
+    }
+
+    .menu-boton,.btn-group{
+      height: 50px;
+      background-color: #3c8dbc;
+      color: #fff;
+      border: none;
+      box-shadow: none;
+    }
+    .menu-boton:hover{
+      background-color: #4681a2;
+      border-radius: 0px;
+      color: #fff;
+      border:none;
+    }
+    .menu-boton:focus{
+      background-color: #4681a2 !important;
+      border-radius: 0px !important;
+      color: #fff !important;
+      border:none;
+    }
+    .menu-boton:visited{
+      height: 50px;
+      background-color: #3c8dbc;
+      color: #fff;
+      border: none;
+      box-shadow: none;
+      border:none;
+    }
+     .menu-boton:active{
+      height: 50px;
+      background-color: #3c8dbc;
+      color: #fff;
+      border: none;
+      box-shadow: none;
+      border:none;
+    }
+
+    .open>.dropdown-menu{
+      width: 100% !important;
+      border-radius: 0 !important;
+
+    }
+    .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
+      border: none;
+      box-shadow: none;
+    }
+
+
+  </style>

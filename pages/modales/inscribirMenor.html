@@ -1,0 +1,84 @@
+<div class="modal fade" id="inscripcionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="width: 80%;">
+    <div class="modal-content">
+      <div class="modal-header" style="    text-align: center;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel-2">Inscripción del menor</h4>
+      </div>
+      <div class="modal-body">
+        <section class="content">
+    
+    
+        <div class="row">
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-10">
+          <form id="form-inscripcion" data-parsley-validate="" class="form-horizontal form-label-left" ng-submit="inscribir();">
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="nombre">Nombre(s) del menor</label>
+                      <input  class="form-control" type="text" required placeholder="Nombre(s) del menor" ng-model="nombre">
+                  </div>
+                    <div class="form-group" style="margin-right:0%;">
+                      <label for="fecha">Fecha de inscripcion</label>
+                      <input id="fechainscripcion" class="form-control" type="date" required placeholder="Fecha de inscripcion" ng-model="fechainscripcion">
+                  </div> 
+                  <div class="form-group" style="margin-right:0%; margin-bottom:0px;">
+                    <label for="depto">Grado y jornada</label>
+                    <div class="row">
+                      <div class="col-md-6" style="padding-right:1.6px;">
+                        <select id="gradoinscripcion" ng-model="gradoinscripcion" class="form-control col-md-7 col-xs-12" ng-change="listarMunicipios();" required>
+                          <option selected disabled  value="">Seleccione grado</option>
+                          <option ng-repeat="obj in grados" value="{{obj.id_grado}}" >{{obj.nombre}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6" style="padding-left:0px;">
+                        <select id="jornadainscripcion" ng-model="jornadainscripcion" class="form-control col-md-7 col-xs-12" required>
+                          <option selected disabled  value="">Seleccione una jornada</option>
+                          <option ng-repeat=" obj in jornadas" value="{{obj.id_jornada}}" >{{obj.nombre}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div> 
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="apellidos">Apellidos del menor</label>
+                      <input class="form-control" type="text" required placeholder="Apellidos del menor" ng-model="apellidos">
+                  </div>
+                  <div class="form-group" style="margin-right:0%;">
+                      <label for="nombre">Acudiente</label>
+                      <input id="acudienteinscripcion" class="form-control" type="text" required placeholder="Acudiente del menor" ng-model="acudienteinscripcion">
+                  </div>
+                   <div class="form-group" style="margin-top: 10.3%;">
+                      
+
+                   </div>       
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <label ng-class='{"classError": colorText=="error", "classSuccess":colorText=="success"}'>{{msj}}</label>
+            </div>
+            <div class="col-md-2">
+              <input type="button" class="btn btn-primary btn-block btn-flat" data-dismiss="modal" value="Cancelar"/>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-success btn-block btn-flat" type="submit">
+                Actualizar
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+      </div>
+      
+    </div>
+  </div>
+</div>

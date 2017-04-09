@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Editorial</title>
+        <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="Resources/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="Resources/css/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+       
+        <!-- Theme style -->
+        <link rel="stylesheet" href="Resources/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="Resources/dist/css/skins/_all-skins.min.css">
+
+        <link rel="stylesheet" href="Resources/css/Style.css">
+        <!-- jQuery 2.2.3 -->
+        <script src="Resources/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="Resources/bootstrap/js/bootstrap.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="Resources/dist/js/app.min.js"></script>
+        <script src="Resources/JS/angular.min.js" type="text/javascript"></script>
+        <script src="Resources/JS/route.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/app.js" type="text/javascript"></script>
+        <!-- Archivos de Usuario-->
+        <script src="Resources/JS/General/usuario/UsuarioSer.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/usuario/CtlUsuario.js" type="text/javascript"></script>
+
+        <!-- Archivos de Login-->
+        <script src="Resources/JS/logIn.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/login/logInSer.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/login/CtlLogIn.js" type="text/javascript"></script>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini" ng-app="app" ng-controller="CtlValidate">
+        <div class="wrapper">
+            <div ng-include="'pages/Templates/header.html'"></div>
+            <div ng-include="'pages/Templates/menu.html'"></div>
+            <div class="content-wrapper">
+                <div ng-view></div>
+                <!-- /.content -->
+            </div>
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    Version Beta 1.0
+                </div>
+                <span>Desarrollado por <b>Jose Didier Franco Gaviria para Talento Digital (MINTIC)</b></span>
+            </footer>
+
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>

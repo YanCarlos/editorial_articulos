@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Editorial</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="dependencias/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+          <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="Resources/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="Resources/css/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+       
+        <!-- Theme style -->
+        <link rel="stylesheet" href="Resources/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="Resources/dist/css/skins/_all-skins.min.css">
+
+        <link rel="stylesheet" href="Resources/css/Style.css">
+        <!-- jQuery 2.2.3 -->
+        <script src="Resources/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="Resources/bootstrap/js/bootstrap.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="Resources/dist/js/app.min.js"></script>
+        <script src="Resources/JS/angular.min.js" type="text/javascript"></script>
+        <script src="Resources/JS/route.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/app.js" type="text/javascript"></script>
+        <!-- Archivos de Usuario-->
+        <script src="Resources/JS/General/usuario/UsuarioSer.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/usuario/CtlUsuario.js" type="text/javascript"></script>
+
+        <!-- Archivos de Login-->
+        <script src="Resources/JS/logIn.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/login/logInSer.js" type="text/javascript"></script>
+        <script src="Resources/JS/General/login/CtlLogIn.js" type="text/javascript"></script>
+    </head>
+    
+     <body ng-app="app" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-login">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a href="#" class="active" id="login-form-link">Login</a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Registro</label>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="panel-body" ng-controller="CtlLogIn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form id="login-form" role="form" name="formLogIn" style="display: block;">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                              <input type="text" name="correo" 
+                                                     id="correo" class="form-control has-feedback-left" 
+                                                     placeholder="Correo" 
+                                                     ng-model="identificacion.correo" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="password" name="password" 
+                                                   id="password" 
+                                                   class="form-control" placeholder="Password" 
+                                                   ng-model="identificacion.password" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">                                          
+                                          <div class="row">                                            
+                                            <div class="col-sm-2  col-sm-offset-5">
+                                                    <input type="button" name="login-submit" 
+                                                           id="login-submit" 
+                                                           class="form-control btn btn-success" 
+                                                           value="Log In" ng-click="logIn(formLogIn.$valid)">
+                                                </div>                                   
+                                            </div>                                            
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="button" name="login-submit" 
+                                                           id="register-form-link"
+                                                           class="form-control btn btn-primary register-form-link" 
+                                                           value="Registrase como Autor" ng-click="registrarAutor()">
+                                                </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">                                          
+                                                    <input type="button" name="login-submit" 
+                                                           id="register-form-link" 
+                                                           class="form-control btn btn-primary register-form-link" 
+                                                           value="Registrase como Supervisor" ng-click="registrarSupervisor()">
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </form>
+                                    <form id="register-form" role="form" name="formRegistro" style="display: none;">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="text" name="nombre" id="nombre" 
+                                                   tabindex="1" class="form-control" 
+                                                   placeholder="Nombre" ng-model="registro.nombre" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="text" name="apellido" 
+                                                   id="apellido" tabindex="1" 
+                                                   class="form-control" placeholder="Apellido" 
+                                                   ng-model="registro.apellido" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="text" name="direccion" 
+                                                   id="direccion" tabindex="2" 
+                                                   class="form-control" placeholder="Direccion"
+                                                   ng-model="registro.direccion" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="number" name="telefono" 
+                                                   id="telefono" tabindex="3" 
+                                                   class="form-control" placeholder="Telefono"
+                                                   ng-model="registro.telefono" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="email" name="user" id="user" 
+                                                   tabindex="4" class="form-control"
+                                                   placeholder="Correo" 
+                                                   ng-model="registro.email" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="password" name="password" 
+                                                   id="password" tabindex="5" 
+                                                   class="form-control" placeholder="Password"
+                                                   ng-model="registro.password" required>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-4 col-sm-offset-4">
+                                                    <input type="button" name="register-submit" 
+                                                           id="register-submit" tabindex="6" 
+                                                           class="form-control btn btn-success" 
+                                                           value="Registrar" ng-click="registrar(formRegistro.$valid)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<div class="modal fade" id="matricularMenor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="width: 80%;">
+    <div class="modal-content">
+      <div class="modal-header" style="    text-align: center;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabelmatricula">Matricular  menor</h4>
+      </div>
+      <div class="modal-body">
+        <section class="content">
+    
+    
+        <div class="row">
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-10">
+         
+          <form id="form-matricula" data-parsley-validate="" class="form-horizontal form-label-left">
+            <div class="row">
+               <div class="panel panel-default" style="width: 98%;">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading">Datos de la incripcion para el menor {{nombre}} {{apellidos}}</div>
+                 
+
+                  <!-- Table -->
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Fecha inscripción (año-mes-dia)</th>
+                        <th>Grado</th>
+                        <th>Jornada</th>
+                        <th>Acudiente</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{fecha_inscripcion}}</td>
+                        <td>{{nombre_grado}}</td>
+                        <td>{{nombre_jornada}}</td>
+                        <td>{{acudiente}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                 <div class="panel panel-default" style="width: 98%;">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading">Datos de la admisión para el menor {{nombre}} {{apellidos}}</div>
+                 
+
+                  <!-- Table -->
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Fecha admisión (año-mes-dia)</th>
+                        <th>Puntaje admisión</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{fecha_admision}}</td>
+                        <td>{{puntaje_admision}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <div class="row">
+             
+             
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <label ng-class='{"classError": colorText=="error", "classSuccess":colorText=="success"}'>{{msj}}</label>
+            </div>
+            <div class="col-md-2">
+              <input type="button" class="btn btn-primary btn-block btn-flat" data-dismiss="modal" value="Cancelar"/>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-success btn-block btn-flat" ng-click="matricular();">
+                Matricular
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+      </div>
+      
+    </div>
+  </div>
+</div>
