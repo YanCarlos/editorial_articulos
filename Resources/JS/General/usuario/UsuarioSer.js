@@ -51,4 +51,25 @@ app.service('usuarioService', function($http, $httpParamSerializerJQLike){
         return promise;
 	}
 
+	this.listarUsuariosPorTipo = function(tipo,pag){
+		var promise = $http({
+			method: "get",
+			url: "PDO/Controller/CtlUsuario.php",
+			params: {
+				type: tipo,
+				pag: pag
+			},
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function mySucces(response) {
+            /*Todos los datos se almacenan en .data*/
+            return response.data;
+        }, function myError(response) {
+            alert("Error");
+            alert(response.statusText);
+        });
+
+        /*Luego se retorna la promesa*/
+        return promise;
+	}
+
 });

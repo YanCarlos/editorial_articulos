@@ -80,7 +80,7 @@ app.controller('CtlLogIn', function ($scope, $window, logInService, usuarioServi
     }
 
     $scope.registrarSupervisor = function () {
-        $scope.registro.tipo = TIPOSUSUARIO.SUPERVISOR;
+        $scope.registro.tipo = TIPOSUSUARIO.REVISOR;
     }
 
     /*Se define una funcion para agregar*/

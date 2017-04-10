@@ -16,6 +16,7 @@ switch (strtolower($method)) {
     case 'get':
         $type = (isset($_REQUEST['type']) ? $_REQUEST['type'] : "");        
         $email = (isset($_REQUEST['email']) ? $_REQUEST['email'] : "");
+        $pag = (isset($_REQUEST['pag']) ? $_REQUEST['pag'] : "");
 
         if ($type != "") {
             //Buscar
@@ -23,13 +24,13 @@ switch (strtolower($method)) {
                 $dtoUsuario->buscar($email);
             }
             else if($type == LISTARAUTORES){
-                $dtoUsuario->listarAutores();
+                $dtoUsuario->listarAutores($pag);
             }
             else if($type == LISTAREDITORES){
-                $dtoUsuario->listarEditores();
+                $dtoUsuario->listarEditores($pag);
             }
             else if($type == LISTARREVISORES){
-                $dtoUsuario->listarRevisores();
+                $dtoUsuario->listarRevisores($pag);
             }
         }
         break;

@@ -11,7 +11,7 @@ class Connection {
     public function connect() {
         //MYSQL
         $this->userbd = "root";        
-        $this->passworddb = "root";
+        $this->passworddb = "";
 
         $this->database = "editorial";        
         $this->host = "localhost";
