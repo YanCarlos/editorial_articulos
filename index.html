@@ -48,28 +48,29 @@ and open the template in the editor.
     </head>
     
      <body ng-app="appPrincipal" >
-        <div class="container">
+        <div class="container container-login">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-login">
                         <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <a href="#" class="active" id="login-form-link">Login</a>
+                            <div class="row" >
+                                <div class="col-xs-12 titulo" >
+                                    <a   >Editorial</a>
                                 </div>
-                                <div class="col-xs-6">
-                                    <label>Registro</label>
-                                </div>
+                                
                             </div>
                             <hr>
                         </div>
                         <div class="panel-body" ng-controller="CtlLogIn">
-                            <div class="row">
+                            <div class="row" style="width: 99% !important;">
                                 <div class="col-md-12">
                                     <form id="login-form" role="form" name="formLogIn" style="display: block;">
+                                      <div class="col-md-12" style="margin-bottom: 10px; ">
+                                        Log in
+                                      </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                               <input type="text" name="correo" 
                                                      id="correo" class="form-control has-feedback-left" 
                                                      placeholder="Correo" 
@@ -79,7 +80,7 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="password" name="password" 
                                                    id="password" 
                                                    class="form-control" placeholder="Password" 
@@ -90,39 +91,50 @@ and open the template in the editor.
                                         <div class="ln_solid"></div>
                                         <div class="form-group">                                          
                                           <div class="row">                                            
-                                            <div class="col-sm-2  col-sm-offset-5">
+                                            <div class="col-sm-6  col-sm-offset-5 btn-btn">
                                                     <input type="button" name="login-submit" 
                                                            id="login-submit" 
-                                                           class="form-control btn btn-success" 
-                                                           value="Log In" ng-click="logIn(formLogIn.$valid)">
+                                                           class="form-control btn btn-primary" 
+                                                           value="Entrar" ng-click="logIn(formLogIn.$valid)">
                                                 </div>                                   
                                             </div>                                            
                                         </div>
-                                        <div class="form-group">
-                                          <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="button" name="login-submit" 
-                                                           id="register-form-link"
-                                                           class="form-control btn btn-primary register-form-link" 
-                                                           value="Registrase como Autor" ng-click="registrarAutor()">
-                                                </div>
-                                          </div>
+                                        <div class="col-md-12 como">
+                                          <span>Registrar como:</span>
                                         </div>
-                                        <div class="form-group">
-                                          <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">                                          
-                                                    <input type="button" name="login-submit" 
-                                                           id="register-form-link" 
-                                                           class="form-control btn btn-primary register-form-link" 
-                                                           value="Registrase como Supervisor" ng-click="registrarSupervisor()">
+                                        
+                                        <!-- ...-->
+                                        <div class="registrando">
+
+                                          <div class="form-group vertical-divider">
+                                            <div class="row">
+                                              <div class="col-sm-12 ">
+                                                      <input type="button"  
+                                                             id="register-form-link"
+                                                             class="form-control btn  register-form-link btn-alternos" 
+                                                             value="Autor" ng-click="registrarAutor()">
+                                                  </div>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <div class="row">
+                                              <div class="col-sm-12 col-sm-offset-3">                                          
+                                                      <input type="button" 
+                                                             id="register-form-link" 
+                                                             class="form-control btn btn-alternos register-form-link" 
+                                                             value="Revisor" ng-click="registrarSupervisor()">
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                     </form>
                                     <form id="register-form" role="form" name="formRegistro" style="display: none;">
+                                    <div class="col-md-12" style="margin-bottom: 10px; ">
+                                        Registrando como {{registro.tipo}}
+                                      </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="text" name="nombre" id="nombre" 
                                                    tabindex="1" class="form-control" 
                                                    placeholder="Nombre" ng-model="registro.nombre" required>
@@ -131,7 +143,7 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="text" name="apellido" 
                                                    id="apellido" tabindex="1" 
                                                    class="form-control" placeholder="Apellido" 
@@ -141,7 +153,7 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="text" name="direccion" 
                                                    id="direccion" tabindex="2" 
                                                    class="form-control" placeholder="Direccion"
@@ -151,7 +163,7 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="number" name="telefono" 
                                                    id="telefono" tabindex="3" 
                                                    class="form-control" placeholder="Telefono"
@@ -161,7 +173,7 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="email" name="user" id="user" 
                                                    tabindex="4" class="form-control"
                                                    placeholder="Correo" 
@@ -171,7 +183,7 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                           <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
+                                            <div class="col-sm-12 col-sm-offset-3">
                                             <input type="password" name="password" 
                                                    id="password" tabindex="5" 
                                                    class="form-control" placeholder="Password"
@@ -181,10 +193,16 @@ and open the template in the editor.
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-sm-4 col-sm-offset-4">
+                                                <div class="col-sm-4 ">
+                                                    <input type="button" 
+                                                           tabindex="6" 
+                                                           class="form-control btn btn-alternos login-form-link" 
+                                                           value="Volver a login" >
+                                                </div>
+                                                <div class="col-sm-6 col-sm-offset-4">
                                                     <input type="button" name="register-submit" 
                                                            id="register-submit" tabindex="6" 
-                                                           class="form-control btn btn-success" 
+                                                           class="form-control btn btn-primary" 
                                                            value="Registrar" ng-click="registrar(formRegistro.$valid)">
                                                 </div>
                                             </div>
@@ -199,3 +217,82 @@ and open the template in the editor.
         </div>
     </body>
 </html>
+
+
+<!-- Estilos de esta seccion -->
+
+<style type="text/css">
+  
+  body{
+    background-color: #fff;
+  }
+  .container-login{
+    width: 80%;
+    height: 80vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container-login .row{
+    width: 100% !important;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-login .row .col-md-6{
+    margin: 0;
+  }
+
+  .registrando{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .registrando .form-group{
+    width: 50%;
+    
+  }
+
+  .registrando input{
+    width: 100%;
+    background-color: rgba(204, 204, 204, 0.18);
+  }
+
+  .registrando input:hover{
+    width: 100%;
+    background-color: rgba(204, 204, 204, 0.4);
+  }
+
+  .col-sm-12{
+    margin-left: 0 !important;
+  }
+  .como{
+    margin-bottom: 12px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ 
+  .titulo{
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+   .oculto{
+    display: none
+  }
+
+  .vertical-divider {
+    border-right: 0.1px solid rgba(210, 200, 200, 0.37);
+  }
+  .btn-btn{
+    padding-right: 0;
+  }
+</style>
