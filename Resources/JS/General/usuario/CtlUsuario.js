@@ -7,10 +7,16 @@ app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInSer
 
 	$scope.tipoUsuario = "";
 	$scope.tiposUsuario = [
-	TIPOSUSUARIO.EDITOR,
-	TIPOSUSUARIO.REVISOR,
-	TIPOSUSUARIO.AUTOR
+		TIPOSUSUARIO.EDITOR,
+		TIPOSUSUARIO.REVISOR,
+		TIPOSUSUARIO.AUTOR
 	];
+
+	$scope.tiposUsuarioEditor = [
+		TIPOSUSUARIO.REVISOR,
+		TIPOSUSUARIO.AUTOR
+	];
+
 
 	$scope.usuarios = [];
 
@@ -87,10 +93,6 @@ app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInSer
 				alert("No hay autores registrados");
 			}
 		});
-	}
-
-	$scope.sayHi = function() {
-		alert('hi!')
 	}	
 
 	$scope.setPage = function (pageNo) {

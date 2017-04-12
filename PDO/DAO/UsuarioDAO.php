@@ -28,19 +28,24 @@ class UsuarioDAO {
 
     function listarAutores($desde){
         $desde = ($desde-1)*10;
-        $query = "SELECT u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".AUTOR."' LIMIT 10 OFFSET ".$desde.";";
+        $query = "SELECT u.id,u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".AUTOR."' LIMIT 10 OFFSET ".$desde.";";
         $this->repository->Execute($query);    
     }
 
     function listarRevisores($desde){
         $desde = ($desde-1)*10;
-        $query = "SELECT u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".REVISOR."' LIMIT 10 OFFSET ".$desde.";";
+        $query = "SELECT u.id,u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".REVISOR."' LIMIT 10 OFFSET ".$desde.";";
+        $this->repository->Execute($query);    
+    }
+
+    function cargarRevisores(){
+        $query = "SELECT u.id,u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".REVISOR."';";
         $this->repository->Execute($query);    
     }
 
     function listarEditores($desde){
         $desde = ($desde-1)*10;
-        $query = "SELECT u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".EDITOR."' LIMIT 10 OFFSET ".$desde.";";
+        $query = "SELECT u.id,u.nombre, u.apellido, u.telefono, u.email, u.direccion, u.estado FROM tb_usuarios u JOIN tb_tipos_usuario tu ON  u.tipo_usuario_id=tu.id WHERE tu.tipo_usuario='".EDITOR."' LIMIT 10 OFFSET ".$desde.";";
         $this->repository->Execute($query);    
     }
 }

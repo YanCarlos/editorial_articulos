@@ -3,6 +3,7 @@
 /* IMPORTS */
 require '../Modelo/Revision.php';
 require '../DAO/RevisionDAO.php';
+require '../Util/Constantes.php';
 
 /* Capturamos el tipo de la peticion: podría ser get, post, put o delete. */
 $method = $_SERVER['REQUEST_METHOD'];
@@ -31,7 +32,7 @@ switch (strtolower($method)) {
         /* Guardar */
         /* CONTROL DE ACCIONES */
         $data = json_decode(json_encode($_POST));
-        $obj = new Revision($data->fecha,$data->descripcion,$data->url,$data->version,$data->mensaje,$data->revisor,$data->articulo,$data->estado);
+        $obj = new Revision($data->revisor,$data->articulo);
         $dtoRevision->crear($obj);
         break;
 

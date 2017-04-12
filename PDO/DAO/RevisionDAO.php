@@ -10,7 +10,10 @@ class RevisionDAO {
     }    
 
     function crear(Revision $obj){
-        $query = "INSERT INTO tb_revisiones (fecha,descripcion,url,version,mensaje,revisor_id,articulo_id,estado_id) VALUES ('".$obj->getFecha()."','".$obj->getDescripcion()."','".$obj->getUrl()."',".$obj->getVersion().",null,".$obj->getRevisor().",".$obj->getArticulo().",".$obj->getEstado().");";
+        $query = "SELECT id FROM tb_estados_revision WHERE descripcion='".CORREGIR."';";  
+        $estado = json_decode($this->repository->ExecuteAux($query));
+        $query = "INSERT INTO tb_revisiones (revisor_id,articulo_id,estado_id) VALUES ('".$obj->getRevisor()
+            ."', ".$obj->getArticulo().", ".$estado[0]->{"id"}.");";
         return $this->repository->ExecuteTransaction($query);
     }
 
@@ -20,6 +23,13 @@ class RevisionDAO {
     }
 
     function editar(Revision $obj){
+        $query = "SELECT id FROM tb_estados_revision WHERE descripcion='".CORREGIR."';";  
+        $estado = json_decode($this->repository->ExecuteAux($query));
+        $query = 'SELECT MAX(version) as version FROM tb_revisiones GROUP BY '.$obj->getArticulo();
+        $version = json_decode($this->repository->ExecuteAux($query));
+        $date = new DateTime();
+        $fecha = $date->format('Y-m-d');
+        $url = $obj->getRevisor()."/".$obj->getArticulo()."/".$obj->getArchivo();
         $query = "UPDATE tb_revisiones set fecha='".$obj->getFecha()."', descripcion='".$obj->getDescripcion()
                 ."', url='".$obj->getUrl()."', version=".$obj->getVersion().", mensaje='".$obj->getMensaje()
                 ."', estado_id=".$obj->getEstado()." where id=".$obj->getId().";";

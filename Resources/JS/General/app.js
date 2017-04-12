@@ -6,7 +6,7 @@
 
 /*Se definen las depenciencias que seran utilizadas por el sistema, son varias
 * se separan asi: ['ngRoute', 'ngCookies', 'xxxxx']*/
-var app = angular.module("appPrincipal", ['ngRoute','ui.bootstrap','angularFileUpload']);
+var app = angular.module("appPrincipal", ['ngRoute','ui.bootstrap','ngFileUpload']);
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -24,6 +24,18 @@ app.config(function ($routeProvider) {
   })    
   .when('/articulos', {
     templateUrl: 'pages/autor/articulo.html'
+  })
+  .when('/articulosautor', {
+    templateUrl: 'pages/autor/articulosautor.html'
+  })
+  .when('/articuloseditor', {
+    templateUrl: 'pages/editor/articulos.html'
+  })
+  .when('/usuarioseditor', {
+    templateUrl: 'pages/editor/usuarios.html'
+  })  
+  .when('/revision', {
+    templateUrl: 'pages/editor/revision.html'
   })
   .otherwise({
     redirectTo: '/'
@@ -69,4 +81,10 @@ app.constant('LISTA',{
  AUTOR: 'LISTARAUTORES',
  REVISOR: 'LISTARREVISORES',
  EDITOR: 'LISTAREDITORES'
+});
+
+app.constant('ESTADO',{
+ CORREGIR: 'CORREGIR',
+ APROBADO: 'APROBADO',
+ DENEGADO: 'DENEGADO'
 });

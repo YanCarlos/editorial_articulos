@@ -30,7 +30,11 @@ switch (strtolower($method)) {
                 $dtoUsuario->listarEditores($pag);
             }
             else if($type == LISTARREVISORES){
-                $dtoUsuario->listarRevisores($pag);
+                if($pag == 0){
+                    $dtoUsuario->cargarRevisores();    
+                }else{
+                    $dtoUsuario->listarRevisores($pag);    
+                }                
             }
         }
         break;

@@ -3,6 +3,7 @@
 /* IMPORTS */
 require '../Modelo/Articulo.php';
 require '../DAO/ArticuloDAO.php';
+require '../Util/Constantes.php';
 
 /* Capturamos el tipo de la peticion: podría ser get, post, put o delete. */
 $method = $_SERVER['REQUEST_METHOD'];
@@ -21,13 +22,13 @@ switch (strtolower($method)) {
             if($type == BUSCAR){
                 $dtoArticulo->buscar($id);
             }
-            else if($type == LISTARPORAUTOR){
+            else if($type == LISTARAUTORES){
                 $dtoArticulo->listarPorAutor($id);
             }
-            else if($type == LISTAR){
-                $dtoArticulo->listar();
+            else if($type == LISTAREDITORES){
+                $dtoArticulo->listarPorEditor();
             }
-            else if($type == LISTARPORREVISOR){
+            else if($type == LISTARREVISORES){
                 $dtoArticulo->listarPorRevisorAsignado($id);
             }
         }
@@ -37,7 +38,7 @@ switch (strtolower($method)) {
         /* Guardar */
         /* CONTROL DE ACCIONES */
         $data = json_decode(json_encode($_POST));
-        $obj = new Articulo($data->descripcion,$data->fecha,$data->estado,$data->url,$data->codigo,$data->autor);
+        $obj = new Articulo($data->descripcion,$data->autor,$data->file);
         $dtoArticulo->crear($obj);
         break;
 

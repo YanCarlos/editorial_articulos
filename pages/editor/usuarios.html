@@ -1,0 +1,81 @@
+<div ng-controller="CtlUsuario" ng-init="listar()">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Usuarios</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings 1</a>
+              </li>
+              <li><a href="#">Settings 2</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <label class="control-label col-md-1 col-sm-1 col-xs-4">Listar</label>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+         <select class="form-control" id="selDepartamento" ng-model="tipoUsuario" ng-options="item for item in tiposUsuarioEditor" ng-change="listar()">
+          <option value="" disabled selected>Seleccione una Opcion</option>
+        </select>
+      </div>    
+      <table id="datatable" class="table table-striped table-bordered">
+       <thead>
+        <tr>
+          <th>
+            <a ng-click="ordenarPor('nombre')">Nombre</a>
+            <a class="caret" ng-click="ordenarPor('-nombre')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('apellido')">Apellido</a>
+            <a class="caret" ng-click="ordenarPor('-apellido')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('direccion')">Direccion</a>
+            <a class="caret" ng-click="ordenarPor('-direccion')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('telefono')">Telefono</a>
+            <a class="caret" ng-click="ordenarPor('-telefono')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('email')">Correo</a>
+            <a class="caret" ng-click="ordenarPor('-email')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('estado')">Estado</a>
+            <a class="caret" ng-click="ordenarPor('-estado')"></a>
+          </th>
+          <th>
+            <a>Opcion</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="obj in usuarios| orderBy:ordenarSeleccionado
+        | filter:txtBuscar" ng-click="llenarCampos(obj)">
+        <td>{{obj.nombre}}</td>
+        <td>{{obj.apellido}}</td>
+        <td>{{obj.direccion}}</td>
+        <td>{{obj.telefono}}</td>
+        <td>{{obj.email}}</td>
+        <td>{{obj.estado}}</td>
+        <td><a confirmed-click="sayHi()" ng-confirm-click="Estas seguro de elimnar a {{obj.nombre}}">Eliminar</a> <a href="#/editarusuario">Editar</a></td>
+       </tr>
+     </tbody>
+   </table>
+   <div class="col-sm-6 col-sm-offset-8">
+    <ul uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+  </div>
+</div>
+</div>
+</div>  
+</div>

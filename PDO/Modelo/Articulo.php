@@ -9,14 +9,12 @@ class Articulo {
     private $url;
     private $codigo;
     private $autor;
+    private $archivo;
 
-    public function __construct($descripcion, $fecha, $estado, $url, $codigo, $autor) {        
+    public function __construct($descripcion, $autor, $archivo) {        
         $this->descripcion = $descripcion;
-        $this->fecha = $fecha;
-        $this->estado = $estado;
-        $this->url = $url;
-        $this->codigo = $codigo;
         $this->autor = $autor;
+        $this->archivo = $archivo;
     }
 
     public function getId() {
@@ -73,6 +71,14 @@ class Articulo {
 
     public function setAutor($autor) {
         $this->autor = $autor;
+    }
+
+    public function getArchivo() {
+        return $this->archivo;
+    }
+
+    public function setArchivo($archivo) {
+        $this->archivo = $archivo;
     }
 
 }

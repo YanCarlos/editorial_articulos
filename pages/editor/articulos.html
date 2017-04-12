@@ -1,0 +1,71 @@
+<div ng-controller="CtlArticulo" ng-init="listarPorEditor()">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Usuarios</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings 1</a>
+              </li>
+              <li><a href="#">Settings 2</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <H1>Articulos</H1>
+      <table id="datatable" class="table table-striped table-bordered">
+       <thead>
+        <tr>        
+          <th>
+            <a ng-click="ordenarPor('codigo')">Codigo</a>
+            <a class="caret" ng-click="ordenarPor('-codigo')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('autor')">Autor</a>
+            <a class="caret" ng-click="ordenarPor('-autor')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('fecha')">Fecha</a>
+            <a class="caret" ng-click="ordenarPor('-fecha')"></a>
+          </th>
+          <th>
+            <a ng-click="ordenarPor('estadoArticulo')">Estado Articulo</a>
+            <a class="caret" ng-click="ordenarPor('-estadoArticulo')"></a>
+          </th>
+
+          <th>
+            <a ng-click="ordenarPor('estadoRevision')">Estado Revision</a>
+            <a class="caret" ng-click="ordenarPor('-estadoRevision')"></a>
+          </th>
+          <th>
+            <a>Opcion</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="obj in articulos| orderBy:ordenarSeleccionado
+        | filter:txtBuscar" ng-click="llenarCampos(obj)">
+        <td>{{obj.id}}</td>
+        <td>{{obj.autor}}</td>
+        <td>{{obj.fecha}}</td>
+        <td>{{obj.estadoArticulo}}</td>
+        <td>{{obj.estadoRevision}}</td>
+        <td><a href="#/revision" ng-click="cargarArticulo(obj)">Asignar</a> <a href="">Editar</a></td>
+       </tr>
+     </tbody>
+   </table>
+   <div class="col-sm-6 col-sm-offset-8">
+    <ul uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+  </div>
+</div>
+</div>
+</div>  
+</div>

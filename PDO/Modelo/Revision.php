@@ -11,16 +11,12 @@ class Revision {
     private $revisor;
     private $articulo;
     private $estado;
+    private $archivo;
 
-    public function __construct($fecha, $descripcion, $url, $version, $mensaje, $revisor, $articulo, $estado) {
-        $this->fecha = $fecha;
-        $this->descripcion = $descripcion;
-        $this->url = $url;
-        $this->version = $version;
-        $this->mensaje = $mensaje;
+
+    public function __construct($revisor, $articulo) {
         $this->revisor = $revisor;
         $this->articulo = $articulo;
-        $this->estado = $estado;
     }
 
     public function getId() {
@@ -85,6 +81,14 @@ class Revision {
 
     public function setEstado($estado) {
         $this->estado = $estado;
+    }
+
+    public function getArchivo() {
+        return $this->archivo;
+    }
+
+    public function setArchivo($archivo) {
+        $this->archivo = $archivo;
     }
 }
 

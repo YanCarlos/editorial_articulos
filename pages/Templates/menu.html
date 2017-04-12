@@ -2,7 +2,7 @@
     <section class="sidebar">        
         <ul class="sidebar-menu">
             <li class="header">Opciones de navegación</li>
-            <li class="treeview" ng-if="usuario.tipo_usuario == 'ADMIN'">
+            <li class="treeview" ng-if="usuario.tipo_usuario == 'ADMIN' || usuario.tipo_usuario == 'EDITOR'">
                 <a href="">
                     <i class="fa fa-child"></i>
                     <span>Usuarios</span>
@@ -13,9 +13,10 @@
                 <ul class="treeview-menu">
                     <li ng-if="usuario.tipo_usuario == 'ADMIN'"><a href="#/registroeditor"><i class="fa fa-circle-o"></i>Crear Editor</a></li>
                     <li ng-if="usuario.tipo_usuario == 'ADMIN'"><a href="#/usuarios"><i class="fa fa-circle-o"></i>Listar</a></li>
+                    <li ng-if="usuario.tipo_usuario == 'EDITOR'"><a href="#/usuarioseditor"><i class="fa fa-circle-o"></i>Listar</a></li>
                 </ul>
             </li>   
-            <li class="treeview" ng-if="usuario.tipo_usuario == 'AUTOR'">
+            <li class="treeview" ng-if="usuario.tipo_usuario == 'AUTOR' || usuario.tipo_usuario == 'EDITOR'">
                 <a href="">
                     <i class="fa fa-child"></i>
                     <span>Articulos</span>
@@ -25,10 +26,11 @@
                 </a>
                 <ul class="treeview-menu">
                     <li ng-if="usuario.tipo_usuario == 'AUTOR'"><a href="#/articulos"><i class="fa fa-circle-o"></i>Crear Articulo</a></li>
-                    <li ng-if="usuario.tipo_usuario == 'AUTOR'"><a href="#/misarticulos"><i class="fa fa-circle-o"></i>Mis Articulos</a></li>
+                    <li ng-if="usuario.tipo_usuario == 'AUTOR'"><a href="#/articulosautor"><i class="fa fa-circle-o"></i>Mis Articulos</a></li>
+                    <li ng-if="usuario.tipo_usuario == 'EDITOR'"><a href="#/articuloseditor"><i class="fa fa-circle-o"></i>Articulos</a></li>
                 </ul>             
             </li>   
-            <li class="treeview" ng-if="usuario.tipo_usuario == 'AUTOR' || usuario.tipo_usuario == 'REVISOR'">
+            <li class="treeview" ng-if="usuario.tipo_usuario == 'AUTOR' || usuario.tipo_usuario == 'REVISOR' || usuario.tipo_usuario == 'EDITOR'">
                 <a href="">
                     <i class="fa fa-child"></i>
                     <span>Revisiones</span>
@@ -37,9 +39,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li ng-if="usuario.tipo_usuario == 'REVISOR'""><a href="#/revisionespendientes"><i class="fa fa-circle-o"></i>Revisiones Pendientes</a></li>
+                    <li ng-if="usuario.tipo_usuario == 'REVISOR' || usuario.tipo_usuario == 'EDITOR'""><a href="#/revisionespendientes"><i class="fa fa-circle-o"></i>Revisiones Pendientes</a></li>
                     <li ng-if="usuario.tipo_usuario == 'AUTOR'"><a href="#/revisionesautor"><i class="fa fa-circle-o"></i>Mis Revisiones</a></li>
-                    <li ng-if="usuario.tipo_usuario == 'REVISOR'""><a href="#/revisionesrevisor"><i class="fa fa-circle-o"></i>Mis Revisiones</a></li>
+                    <li ng-if="usuario.tipo_usuario == 'REVISOR' || usuario.tipo_usuario == 'EDITOR'""><a href="#/revisionesrevisor"><i class="fa fa-circle-o"></i>Mis Revisiones</a></li>
                 </ul>
             </li>         
         </ul>
