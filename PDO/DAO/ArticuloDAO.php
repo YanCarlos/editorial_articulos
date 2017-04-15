@@ -10,7 +10,7 @@ class ArticuloDAO {
     }
 
     function buscar($idArticulo){
-        $query = "SELECT (id,descripcion,fecha,estado,url,codigo,autor_id) FROM tb_articulos WHERE id=".$idArticulo.";";
+        $query = "SELECT a.id,a.descripcion,a.fecha,a.estado,a.url,a.codigo,a.autor_id,e.descripcion as descEstado FROM tb_articulos a JOIN tb_estados_revision e ON a.estado=e.id WHERE a.id=".$idArticulo.";";
         $this->repository->Execute($query);
     }
 
@@ -38,13 +38,25 @@ class ArticuloDAO {
         $this->repository->ExecuteTransaction($query);
     }
 
+    function editarPorEditor($articulo, $estado){
+        $query = "SELECT id FROM tb_estados_revision WHERE descripcion='".$estado."';";  
+        $estado = json_decode($this->repository->ExecuteAux($query)); 
+        $query = "UPDATE tb_articulos SET estado = ".$estado[0]->{"id"}." WHERE id=".$articulo.";";;
+        $this->repository->ExecuteTransaction($query);
+    }
+
     function listar(){
         $query = "SELECT (id,descripcion,fecha,estado,url,codigo,autor_id) FROM tb_articulos";
         $this->repository->Execute($query);    
     }
 
-    function listarPorAutor($idAutor){
-        $query = "SELECT a.id,a.descripcion,a.fecha,a.url,a.codigo,a.autor_id,e.descripcion as estado FROM tb_articulos a JOIN tb_estados_revision e ON e.id=a.estado WHERE autor_id=".$idAutor.";";
+    function listarPorAutor($idAutor, $desde){
+        if ($desde == "") {
+            $query = "SELECT a.id,a.descripcion,a.fecha,a.url,a.codigo,a.autor_id,e.descripcion as estado FROM tb_articulos a JOIN tb_estados_revision e ON e.id=a.estado WHERE autor_id=".$idAutor.";";            
+        }else{
+            $desde = ($desde-1)*10;
+            $query = "SELECT a.id,a.descripcion,a.fecha,a.url,a.codigo,a.autor_id,e.descripcion as estado FROM tb_articulos a JOIN tb_estados_revision e ON e.id=a.estado WHERE autor_id=".$idAutor." LIMIT 10 OFFSET ".$desde.";";
+        }     
         $this->repository->Execute($query);    
     }
 

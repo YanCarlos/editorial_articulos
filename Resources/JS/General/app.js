@@ -34,8 +34,29 @@ app.config(function ($routeProvider) {
   .when('/usuarioseditor', {
     templateUrl: 'pages/editor/usuarios.html'
   })  
-  .when('/revision', {
+  .when('/revision/:idArticulo', {
     templateUrl: 'pages/editor/revision.html'
+  }) 
+  .when('/editararticuloeditor/:idArticulo', {
+    templateUrl: 'pages/editor/editararticulo.html'
+  })
+  .when('/revisionespendientes', {
+    templateUrl: 'pages/revisor/revisionespendientes.html'
+  })
+  .when('/crearrevision/:idRevision', {
+    templateUrl: 'pages/compartido/crearrevision.html'
+  })
+  .when('/editarrevision', {
+    templateUrl: 'pages/compartido/editarrevision.html'
+  })
+  .when('/misrevisiones', {
+    templateUrl: 'pages/compartido/misrevisiones.html'
+  })
+  .when('/editararticulo', {
+    templateUrl: 'pages/autor/editararticulo.html'
+  })
+  .when('/revisionesporarticulo', {
+    templateUrl: 'pages/autor/revisionesporarticulo.html'
   })
   .otherwise({
     redirectTo: '/'
@@ -78,13 +99,22 @@ app.constant('TIPOSUSUARIO',{
 });
 
 app.constant('LISTA',{
+ BUSCAR: 'BUSCAR',
  AUTOR: 'LISTARAUTORES',
  REVISOR: 'LISTARREVISORES',
- EDITOR: 'LISTAREDITORES'
+ EDITOR: 'LISTAREDITORES',
+ REVISIONESPENDIENTES: 'REVISIONESPENDIENTES',
+ REVISIONESPORREVISOR: 'REVISIONESPORREVISOR',
+ REVISIONESPORARTICULO: 'REVISIONESPORARTICULO'
 });
 
 app.constant('ESTADO',{
  CORREGIR: 'CORREGIR',
  APROBADO: 'APROBADO',
  DENEGADO: 'DENEGADO'
+});
+
+app.constant('TIPOARCHIVO',{
+ ARTICULO: 'articulos',
+ REVISION: 'revisiones'
 });

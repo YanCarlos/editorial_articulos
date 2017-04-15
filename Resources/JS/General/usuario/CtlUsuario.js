@@ -102,8 +102,6 @@ app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInSer
 	$scope.pageChanged = function() {
 		console.log("Hola");
 		$log.log('Page changed to: ' + $scope.currentPage);
-	};
-
-	
+	};	
 
 });

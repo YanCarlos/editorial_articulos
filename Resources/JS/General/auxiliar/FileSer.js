@@ -2,13 +2,13 @@
 
 app.service('fileSer', function(Upload){
 
-	this.subirArchivo = function (file, ruta) {
+	this.subirArchivo = function (file, ruta, tipo) {
         Upload.upload({
             url: 'PDO/Util/CargarArchivo.php',
             method: 'post',
             file: file,
             data: {                
-                ruta: '/articulos/'+ruta
+                ruta: '/'+tipo+'/'+ruta
             }
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);

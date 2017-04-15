@@ -13,18 +13,62 @@ app.service('articuloSer', function($http, $httpParamSerializerJQLike){
 			}),
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function mySucces(response) {
-            /*Todos los datos se almacenan en .data*/
-            return response.data;
-        }, function myError(response) {
-            alert("Error");
-            alert(response.statusText);
-        });
+			/*Todos los datos se almacenan en .data*/
+			return response.data;
+		}, function myError(response) {
+			alert("Error");
+			alert(response.statusText);
+		});
 
-        /*Luego se retorna la promesa*/
-        return promise;
+		/*Luego se retorna la promesa*/
+		return promise;
 	};
 
-	this.listar = function(tipo, id){
+	this.editar = function(articulo, perfil){
+		var promise = $http({
+			method: "put",
+			url: "PDO/Controller/CtlArticulo.php",
+			params: {
+				perfil: perfil,
+				articulo: articulo.id,
+				estado: articulo.estado
+			},
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function mySucces(response) {
+			/*Todos los datos se almacenan en .data*/
+			return response.data;
+		}, function myError(response) {
+			alert("Error");
+			alert(response.statusText);
+		});
+
+		/*Luego se retorna la promesa*/
+		return promise;
+	}
+
+	this.listar = function(tipo, id, pag){
+		var promise = $http({
+			method: "get",
+			url: "PDO/Controller/CtlArticulo.php",
+			params: {
+				id: id,
+				type: tipo,
+				pag: pag
+			},
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function mySucces(response) {
+			/*Todos los datos se almacenan en .data*/
+			return response.data;
+		}, function myError(response) {
+			alert("Error");
+			alert(response.statusText);
+		});
+
+		/*Luego se retorna la promesa*/
+		return promise;
+	};
+
+	this.buscar = function(id, tipo){
 		var promise = $http({
 			method: "get",
 			url: "PDO/Controller/CtlArticulo.php",
@@ -34,15 +78,15 @@ app.service('articuloSer', function($http, $httpParamSerializerJQLike){
 			},
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function mySucces(response) {
-            /*Todos los datos se almacenan en .data*/
-            return response.data;
-        }, function myError(response) {
-            alert("Error");
-            alert(response.statusText);
-        });
+			/*Todos los datos se almacenan en .data*/
+			return response.data;
+		}, function myError(response) {
+			alert("Error");
+			alert(response.statusText);
+		});
 
-        /*Luego se retorna la promesa*/
-        return promise;
-	};
+		/*Luego se retorna la promesa*/
+		return promise;	
+	}
 
 });

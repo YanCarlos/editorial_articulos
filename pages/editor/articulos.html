@@ -46,7 +46,10 @@
             <a class="caret" ng-click="ordenarPor('-estadoRevision')"></a>
           </th>
           <th>
-            <a>Opcion</a>
+            <a>Articulo</a>
+          </th>          
+          <th>
+            <a>Revision</a>
           </th>
         </tr>
       </thead>
@@ -58,7 +61,8 @@
         <td>{{obj.fecha}}</td>
         <td>{{obj.estadoArticulo}}</td>
         <td>{{obj.estadoRevision}}</td>
-        <td><a href="#/revision" ng-click="cargarArticulo(obj)">Asignar</a> <a href="">Editar</a></td>
+        <td><a href="#/editararticuloeditor/{{obj.id}}">Editar</a></td>
+        <td><a href="#/revision/{{obj.id}}">Asignar</a> <a href="">Crear</a></td>
        </tr>
      </tbody>
    </table>

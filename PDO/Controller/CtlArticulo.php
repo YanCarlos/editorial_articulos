@@ -16,6 +16,7 @@ switch (strtolower($method)) {
     case 'get':
         $type = (isset($_REQUEST['type']) ? $_REQUEST['type'] : "");        
         $id = (isset($_REQUEST['id']) ? $_REQUEST['id'] : "");
+        $pag = (isset($_REQUEST['pag']) ? $_REQUEST['pag'] : "");
 
         if ($type != "") {
             //Buscar
@@ -23,7 +24,7 @@ switch (strtolower($method)) {
                 $dtoArticulo->buscar($id);
             }
             else if($type == LISTARAUTORES){
-                $dtoArticulo->listarPorAutor($id);
+                $dtoArticulo->listarPorAutor($id, $pag);
             }
             else if($type == LISTAREDITORES){
                 $dtoArticulo->listarPorEditor();
@@ -45,9 +46,15 @@ switch (strtolower($method)) {
     case 'put':
         /* Eliminar */
         /* CONTROL DE ACCIONES */
-        $data = json_decode(json_encode($_POST));        
-        $obj = new Articulo($data->descripcion,$data->fecha,$data->estado,$data->url,$data->codigo,$data->autor);
-        $dtoArticulo->editar($obj);
+        $perfil = (isset($_REQUEST['perfil']) ? $_REQUEST['perfil'] : "");   
+        $articulo = (isset($_REQUEST['articulo']) ? $_REQUEST['articulo'] : "");   
+        $estado = (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "");   
+        
+        if($perfil == EDITOR){            
+            $dtoArticulo->editarPorEditor($articulo, $estado);
+        }else if($perfil == AUTOR){
+
+        }        
         break;
 }
 ?>
