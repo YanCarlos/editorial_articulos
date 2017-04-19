@@ -15,18 +15,35 @@ app.controller('CtlArticulo', function($scope, $routeParams, $window, articuloSe
     $scope.currentPage = 1;
     $scope.maxSize = 5;
 
-    $scope.crear = function(form){
+    $scope.crear = function(form, tipo){
         if(form){
-            articuloSer.crear($scope.articulo).then(function(response){
-                if(response.status){
-                    fileSer.subirArchivo($scope.articulo.file,response.msg,TIPOARCHIVO.ARTICULO);
-                    $scope.articulo = {};
-                    alert("El articulo se registró con éxito");
-                }
-            });
+            if($scope.articulo.file.name.length > 0){
+                articuloSer.crear($scope.articulo).then(function(response){
+                    if(response.status){
+                        fileSer.subirArchivo($scope.articulo.file,response.msg,TIPOARCHIVO.ARTICULO);
+                        $scope.articulo = {};
+                        alert("El articulo se registró con éxito");
+                    }
+                });
+            }            
         }else{
             alert("Diligencie todos los datos");
         }
+    };
+
+    $scope.editarPorAutor = function(form){
+        if(form){
+            if($scope.articulo.file.name.length > 0){
+                articuloSer.editar($scope.articulo, TIPOSUSUARIO.AUTOR).then(function(response){
+                    if(response.status){
+                        fileSer.subirArchivo($scope.articulo.file,response.msg,TIPOARCHIVO.ARTICULO);
+                        alert("Se edito con exito");
+                    }
+                });
+            }        
+        }else{
+            alert("Diligencie el estado");
+        }    
     };
 
     $scope.listarPorEditor = function(){ 
@@ -34,7 +51,7 @@ app.controller('CtlArticulo', function($scope, $routeParams, $window, articuloSe
             if (response.length > 0) {
                 $scope.articulos = [];
                 $scope.totalItems = response.length;
-                for(var i = 0; i < response.length; i++){
+                for(var i = 0; i < response.length && i < 10; i++){
                     if(response[i].estadoRevision == null){
                         response[i].estadoRevision = "NO TIENE";
                     }
@@ -59,7 +76,7 @@ app.controller('CtlArticulo', function($scope, $routeParams, $window, articuloSe
             if (response.length > 0) {
                 $scope.articulos = [];
                 $scope.totalItems = response.length;
-                for(var i = 0; i < response.length; i++){
+                for(var i = 0; i < response.length && i < 10; i++){
                     $scope.articulos.push({
                         id: response[i].id,
                         descripcion: response[i].descripcion,
@@ -98,7 +115,7 @@ app.controller('CtlArticulo', function($scope, $routeParams, $window, articuloSe
 
     $scope.editarPorEditor = function(form) {
         if(form){
-            articuloSer.editar($scope.articulo, TIPOSUSUARIO.EDITOR).then(function(response){
+            articuloSer.editarPorEditor($scope.articulo, TIPOSUSUARIO.EDITOR).then(function(response){
                 if(response.status){
                     alert("Se edito con exito");
                 }
@@ -114,20 +131,23 @@ app.controller('CtlArticulo', function($scope, $routeParams, $window, articuloSe
         $scope.articulo.tipo = extension[extension.length-1];
     };
 
-    $scope.setPage = function (pageNo) {
-        $scope.currentPage = pageNo;
-    };
-
     $scope.pageChanged = function(tipoLista) {
         articuloSer.listar(tipoLista, $scope.articulo.autor, $scope.currentPage).then(function(response){
             if (response.length > 0) {
                 $scope.articulos = [];
                 for(var i = 0; i < response.length; i++){
+                    if(response[i].estadoRevision == null){
+                        response[i].estadoRevision = "NO TIENE";
+                    }
                     $scope.articulos.push({
+                        id: response[i].id,
                         descripcion: response[i].descripcion,
                         fecha: response[i].fecha,
                         url: response[i].url,
-                        estado: response[i].estado
+                        estado: response[i].estado,
+                        autor: response[i].nombre+" "+response[i].apellido,
+                        estadoArticulo: response[i].estadoArticulo,
+                        estadoRevision: response[i].estadoRevision
                     });
                 }
             } else {

@@ -52,8 +52,8 @@ switch (strtolower($method)) {
     case 'delete':
         /* Eliminar */
         /* CONTROL DE ACCIONES */
-        $data = json_decode(json_encode($_POST));        
-        $dtoUsuario->eliminar($data->id);
+        parse_str(file_get_contents("php://input"),$post_vars);
+        $dtoUsuario->eliminar($post_vars['usuario']);
         break;
 }
 ?>

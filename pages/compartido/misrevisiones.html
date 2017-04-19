@@ -45,7 +45,10 @@
             <a class="caret" ng-click="ordenarPor('-estado')"></a>
           </th>     
           <th>
-            <a>Opciones</a>
+            <a>Mensaje</a>
+          </th>
+          <th>
+            <a>Revision</a>
           </th>
         </tr>
       </thead>
@@ -57,7 +60,8 @@
         <td>{{obj.fecha}}</td>
         <td>{{obj.version}}</td>
         <td>{{obj.estado}}</td>
-        <td><a href="#/editarrevision?idRevision={{obj.id}}&idArticulo={{obj.articulo_id}}">Editar</a></td>
+        <td><a href="#/vermensaje?idRevision={{obj.id}}" ng-if="obj.mensaje">Ver</a><div ng-if="!obj.mensaje">NO TIENE</div></td>
+        <td><a href="#/editarrevision?idRevision={{obj.id}}&idArticulo={{obj.articulo_id}}">Actualizar</a></td>
        </tr>
      </tbody>
    </table>

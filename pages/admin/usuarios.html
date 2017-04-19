@@ -68,7 +68,8 @@
         <td>{{obj.telefono}}</td>
         <td>{{obj.email}}</td>
         <td>{{obj.estado}}</td>
-        <td><a confirmed-click="sayHi()" ng-confirm-click="Estas seguro de elimnar a {{obj.nombre}}">Eliminar</a> <a href="#/editarusuario">Editar</a></td>
+        <td><a confirmed-click="eliminar({{obj.id}})" ng-confirm-click="Estas seguro de elimnar a {{obj.nombre}}">Eliminar</a>
+            <a href="#/editarusuario?usuario={{obj.email}}">Editar</a></td>
        </tr>
      </tbody>
    </table>

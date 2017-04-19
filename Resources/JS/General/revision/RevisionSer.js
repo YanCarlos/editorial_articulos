@@ -54,7 +54,30 @@ app.service('revisionSer', function ($http, $httpParamSerializerJQLike) {
 				revisor: revision.revisor,
 				descripcion: revision.descripcion,
 				estado: revision.estado,
-				file: revision.file.name
+				file: revision.file.name,
+				type: revision.tipoForm	
+			},
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function mySucces(response) {
+            /*Todos los datos se almacenan en .data*/
+            return response.data;
+        }, function myError(response) {
+            alert("Error");
+            alert(response.statusText);
+        });
+
+        /*Luego se retorna la promesa*/
+        return promise;
+	};
+
+	this.responder = function(revision){
+		var promise = $http({
+			method: 'put',
+			url: 'PDO/Controller/CtlRevision.php',
+			params: {
+				id: revision.id,
+				mensaje: revision.mensaje,
+				type: "RESPONDER"
 			},
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function mySucces(response) {

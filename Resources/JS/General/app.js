@@ -58,6 +58,18 @@ app.config(function ($routeProvider) {
   .when('/revisionesporarticulo', {
     templateUrl: 'pages/autor/revisionesporarticulo.html'
   })
+  .when('/crearrevisioneditor', {
+    templateUrl: 'pages/editor/crearrevision.html'
+  })
+  .when('/responder', {
+    templateUrl: 'pages/autor/responder.html'
+  })
+  .when('/vermensaje', {
+    templateUrl: 'pages/compartido/vermensaje.html'
+  })
+  .when('/editarusuario', {
+    templateUrl: 'pages/admin/editarusuario.html'
+  })
   .otherwise({
     redirectTo: '/'
   });

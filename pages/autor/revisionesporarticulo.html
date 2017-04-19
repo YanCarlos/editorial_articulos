@@ -44,6 +44,9 @@
             <a ng-click="ordenarPor('estado')">Estado</a>
             <a class="caret" ng-click="ordenarPor('-estado')"></a>
           </th>  
+          <th>
+            <a>Opciones</a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -54,6 +57,7 @@
         <td>{{obj.fecha}}</td>
         <td>{{obj.version}}</td>
         <td>{{obj.estado}}</td>
+        <td><a href="#/responder?idRevision={{obj.id}}">Responder</a></td>
        </tr>
      </tbody>
    </table>

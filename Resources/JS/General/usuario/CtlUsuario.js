@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInService, TIPOSUSUARIO, LISTA){
+app.controller('CtlUsuario', function ($scope, $route, $window, $routeParams, usuarioService, logInService, TIPOSUSUARIO, LISTA){
 
 	$scope.usuario = {};	
 	$scope.editor = {};
@@ -36,12 +36,23 @@ app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInSer
 		});
 	};
 
+	$scope.cargarUsuario = function(form){
+		var usuario = $routeParams.usuario;
+		usuarioService.buscar(usuario).then(function(response){
+			if(response.length > 0){
+				response[0].telefono = parseInt(response[0].telefono);
+				$scope.usuario = response[0];
+			}else{
+				alert("El usuario no existe");
+			}
+		});
+	}
+
 	$scope.editar = function (form){
 		if(form){
 			usuarioService.editar($scope.usuario).then(function(response){
 				if(response.status === "true" || (response.status === "false" && response.msg === "Error en la operacion")){	
-					sessionStorage.setItem("user", $scope.usuario.email);
-					$window.location.href = "inicio.html";				
+					sessionStorage.setItem("user", $scope.usuario.email);			
 					alert("Se edito con éxito");
 				}else if(response.msg.errorInfo[0] === "23000"){
 					alert("El correo ya existe");
@@ -80,10 +91,50 @@ app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInSer
 			$scope.tipoUsuario = TIPOSUSUARIO.AUTOR;
 			tipo = LISTA.AUTOR;
 		}
-		usuarioService.listarUsuariosPorTipo(tipo,$scope.currentPage).then(function(response){
+		usuarioService.listarUsuariosPorTipo(tipo).then(function(response){
 			if(response.length > 0){
 				$scope.usuarios = [];
 				$scope.totalItems = response.length;
+				for(var i=0; i< response.length && i < 10; i++){
+					$scope.usuarios.push({
+						id: response[i].id,
+						nombre: response[i].nombre,
+						apellido: response[i].apellido, 
+						direccion: response[i].direccion,
+						telefono: response[i].telefono, 
+						email: response[i].email, 
+						estado: response[i].estado});
+				}
+			}else{
+				$scope.usuarios = [];
+				alert("No hay autores registrados");
+			}
+		});
+	}	
+
+	$scope.eliminar = function(usuario){
+		$scope.usuario.id = usuario;
+		usuarioService.eliminar($scope.usuario).then(function(response){
+			if(response.status){
+				alert("Se eliminó con exito");
+				$route.reload();
+			}
+		});	
+	}
+
+	$scope.pageChanged = function() {
+		var tipo = ""
+		if($scope.tipoUsuario === TIPOSUSUARIO.REVISOR){
+			tipo = LISTA.REVISOR;
+		}else if($scope.tipoUsuario === TIPOSUSUARIO.EDITOR){
+			tipo = LISTA.EDITOR;
+		}else{
+			$scope.tipoUsuario = TIPOSUSUARIO.AUTOR;
+			tipo = LISTA.AUTOR;
+		}
+		usuarioService.listarUsuariosPorTipo(tipo,$scope.currentPage).then(function(response){
+			if(response.length > 0){
+				$scope.usuarios = [];
 				for(var i=0; i< response.length; i++){
 					$scope.usuarios.push({nombre: response[i].nombre, apellido: response[i].apellido, direccion: response[i].direccion,
 						telefono: response[i].telefono, email: response[i].email, estado: response[i].estado});
@@ -93,15 +144,6 @@ app.controller('CtlUsuario', function ($scope, $window, usuarioService, logInSer
 				alert("No hay autores registrados");
 			}
 		});
-	}	
-
-	$scope.setPage = function (pageNo) {
-		$scope.currentPage = pageNo;
-	};
-
-	$scope.pageChanged = function() {
-		console.log("Hola");
-		$log.log('Page changed to: ' + $scope.currentPage);
 	};	
 
 });

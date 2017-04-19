@@ -51,6 +51,26 @@ app.service('usuarioService', function($http, $httpParamSerializerJQLike){
         return promise;
 	}
 
+	this.eliminar = function(usuario){
+		var promise = $http({
+			method: "delete",
+			url: "PDO/Controller/CtlUsuario.php",
+			data: $httpParamSerializerJQLike({
+				usuario: usuario.id		
+			}),
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function mySucces(response) {
+            /*Todos los datos se almacenan en .data*/
+            return response.data;
+        }, function myError(response) {
+            alert("Error");
+            alert(response.statusText);
+        });
+
+        /*Luego se retorna la promesa*/
+        return promise;
+	}
+
 	this.listarUsuariosPorTipo = function(tipo,pag){
 		var promise = $http({
 			method: "get",

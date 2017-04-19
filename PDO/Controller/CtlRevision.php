@@ -49,13 +49,22 @@ switch (strtolower($method)) {
         $descripcion = (isset($_REQUEST['descripcion']) ? $_REQUEST['descripcion'] : "");        
         $estado = (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "");        
         $file = (isset($_REQUEST['file']) ? $_REQUEST['file'] : "");        
+        $type = (isset($_REQUEST['type']) ? $_REQUEST['type'] : "");  
+        $mensaje = (isset($_REQUEST['mensaje']) ? $_REQUEST['mensaje'] : "");  
 
         $obj = new Revision($revisor,$articulo);
         $obj->setDescripcion($descripcion);
         $obj->setEstado($estado);
         $obj->setArchivo($file);
         $obj->setId($id);
-        $dtoRevision->editar($obj);
+
+        if($type == "CREAR"){
+            $dtoRevision->crearRevision($obj);
+        }else if($type == "EDITAR"){
+            $dtoRevision->editar($obj);
+        }else if($type == "RESPONDER"){
+            $dtoRevision->responder($id, $mensaje);
+        }
         break;
 }
 ?>

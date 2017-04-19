@@ -39,7 +39,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li ng-if="usuario.tipo_usuario == 'REVISOR' || usuario.tipo_usuario == 'EDITOR'""><a href="#/revisionespendientes"><i class="fa fa-circle-o"></i>Revisiones Pendientes</a></li>
+                    <li ng-if="usuario.tipo_usuario == 'REVISOR'""><a href="#/revisionespendientes"><i class="fa fa-circle-o"></i>Revisiones Pendientes</a></li>
                     <li ng-if="usuario.tipo_usuario == 'AUTOR'"><a href="#/revisionesautor"><i class="fa fa-circle-o"></i>Mis Revisiones</a></li>
                     <li ng-if="usuario.tipo_usuario == 'REVISOR' || usuario.tipo_usuario == 'EDITOR'""><a href="#/misrevisiones?idRevisor={{usuario.id}}"><i class="fa fa-circle-o"></i>Mis Revisiones</a></li>
                 </ul>

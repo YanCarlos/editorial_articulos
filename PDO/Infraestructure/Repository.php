@@ -81,10 +81,8 @@ class Repository {
             $resultado = $this->objCon->getConnect()->prepare($query);
             /* Executo la consulta */
             $resultado->execute();
-            /* Si obtuvo resultados, entonces paselos a un vector */
-            if ($resultado->rowCount() > 0) {
-                $vec = $resultado->fetchAll(PDO::FETCH_ASSOC);
-            }
+            /* Si obtuvo resultados, entonces paselos a un vector */            
+            $vec = $resultado->fetchAll(PDO::FETCH_ASSOC);            
 
             if (isset($vec)) {
                 return (json_encode($vec));

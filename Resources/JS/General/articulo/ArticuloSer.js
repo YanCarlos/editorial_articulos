@@ -31,6 +31,30 @@ app.service('articuloSer', function($http, $httpParamSerializerJQLike){
 			params: {
 				perfil: perfil,
 				articulo: articulo.id,
+				estado: articulo.estado,
+				descripcion: articulo.descripcion,
+				file: articulo.file.name
+			},
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function mySucces(response) {
+			/*Todos los datos se almacenan en .data*/
+			return response.data;
+		}, function myError(response) {
+			alert("Error");
+			alert(response.statusText);
+		});
+
+		/*Luego se retorna la promesa*/
+		return promise;
+	}
+
+	this.editarPorEditor = function(articulo, perfil){
+		var promise = $http({
+			method: "put",
+			url: "PDO/Controller/CtlArticulo.php",
+			params: {
+				perfil: perfil,
+				articulo: articulo.id,
 				estado: articulo.estado
 			},
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}

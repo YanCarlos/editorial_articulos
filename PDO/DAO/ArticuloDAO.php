@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 class ArticuloDAO {
 
@@ -30,7 +30,7 @@ class ArticuloDAO {
         $resp = json_decode($this->repository->ExecuteTransactionAux($query));
         echo(json_encode(['status' => 'true', "msg" => $url]));
     }
-
+    
     function editar(Articulo $obj){
         $query = "UPDATE tb_articulos SET descripcion='".$obj->getDescripcion()."', fecha='".$obj->getFecha()
                 ."', estado=".$obj->getEstado().", url='".$obj->getUrl()."', codigo='".$obj->getCodigo()."',"
@@ -43,6 +43,15 @@ class ArticuloDAO {
         $estado = json_decode($this->repository->ExecuteAux($query)); 
         $query = "UPDATE tb_articulos SET estado = ".$estado[0]->{"id"}." WHERE id=".$articulo.";";;
         $this->repository->ExecuteTransaction($query);
+    }
+
+    function editarPorAutor($articulo, $descripcion, $file){
+        $query = "SELECT codigo,autor_id FROM tb_articulos WHERE id=".$articulo.";";
+        $a = json_decode($this->repository->ExecuteAux($query));    
+        $url = $a[0]->{"autor_id"}."/".$a[0]->{"codigo"}."/".$file; 
+        $query = "UPDATE tb_articulos SET descripcion = '".$descripcion."', url='".$url."' WHERE id=".$articulo.";";;
+        $resp = json_decode($this->repository->ExecuteTransactionAux($query));
+        echo(json_encode(['status' => 'true', "msg" => $url]));
     }
 
     function listar(){
@@ -60,13 +69,23 @@ class ArticuloDAO {
         $this->repository->Execute($query);    
     }
 
-    function listarPorEditor(){
-        $query = "SELECT a.id,a.descripcion,a.fecha,a.url,a.codigo,a.autor_id,u.nombre,u.apellido,eA.descripcion 
-            as estadoArticulo, eR.descripcion as estadoRevision FROM tb_articulos a JOIN tb_usuarios u ON 
-            a.autor_id=u.id JOIN tb_estados_revision eA ON eA.id=a.estado LEFT JOIN (SELECT r.id,r.estado_id
-            ,r.articulo_id FROM (SELECT articulo_id, MAX(version) as version FROM tb_revisiones GROUP BY 
-            articulo_id) aux JOIN tb_revisiones r ON r.articulo_id=aux.articulo_id AND aux.version= r.version) r 
-            on r.articulo_id=a.id LEFT JOIN tb_estados_revision eR ON eR.id=r.estado_id;";
+    function listarPorEditor($desde){
+        if($desde == ""){
+            $query = "SELECT a.id,a.descripcion,a.fecha,a.url,a.codigo,a.autor_id,u.nombre,u.apellido,eA.descripcion 
+                as estadoArticulo, eR.descripcion as estadoRevision FROM tb_articulos a JOIN tb_usuarios u ON 
+                a.autor_id=u.id JOIN tb_estados_revision eA ON eA.id=a.estado LEFT JOIN (SELECT r.id,r.estado_id
+                ,r.articulo_id FROM (SELECT articulo_id, MAX(version) as version FROM tb_revisiones GROUP BY 
+                articulo_id) aux JOIN tb_revisiones r ON r.articulo_id=aux.articulo_id AND aux.version= r.version) r 
+                on r.articulo_id=a.id LEFT JOIN tb_estados_revision eR ON eR.id=r.estado_id;";
+        }else{
+            $desde = ($desde-1)*10;
+            $query = "SELECT a.id,a.descripcion,a.fecha,a.url,a.codigo,a.autor_id,u.nombre,u.apellido,eA.descripcion 
+                as estadoArticulo, eR.descripcion as estadoRevision FROM tb_articulos a JOIN tb_usuarios u ON 
+                a.autor_id=u.id JOIN tb_estados_revision eA ON eA.id=a.estado LEFT JOIN (SELECT r.id,r.estado_id
+                ,r.articulo_id FROM (SELECT articulo_id, MAX(version) as version FROM tb_revisiones GROUP BY 
+                articulo_id) aux JOIN tb_revisiones r ON r.articulo_id=aux.articulo_id AND aux.version= r.version) r 
+                on r.articulo_id=a.id LEFT JOIN tb_estados_revision eR ON eR.id=r.estado_id LIMIT 10 OFFSET ".$desde.";";
+        }        
         $this->repository->Execute($query);    
     }
 

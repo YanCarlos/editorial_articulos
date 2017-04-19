@@ -29,9 +29,10 @@ function eliminarDir($carpeta){
 }
 
 if ( ! is_dir(SITE_ROOT.$path)) {
-  mkdir(SITE_ROOT.$path, 0755, true);
+    mkdir(SITE_ROOT.$path, 0755, true);
 } else {
 	eliminarDir(SITE_ROOT.$path);
+    mkdir(SITE_ROOT.$path, 0755, true);
 }
 move_uploaded_file( $_FILES['file']['tmp_name'] , SITE_ROOT.$destination );
 ?>

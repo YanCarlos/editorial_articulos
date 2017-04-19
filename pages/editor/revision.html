@@ -43,7 +43,7 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Revisor <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="form-control" id="selDepartamento" ng-model="revision.revisor" ng-options="item.id as item.desc for item in revisores" required>                
+                <select class="form-control" id="selDepartamento" ng-model="revision.revisor" ng-options="item.id as item.descripcion for item in revisores" required>                
                   <option value="" disabled selected>Seleccione una Opcion</option>
                 </select>
               </div>
@@ -52,7 +52,7 @@
            <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
               <input type="button" value="Cancel" class="btn btn-primary">
-              <button type="button" class="btn btn-success btn-s" ng-click="crear(formRevision.$valid)">
+              <button type="button" class="btn btn-success btn-s" ng-click="crear(formRevision.$valid,'ASIGNAR')">
                 <span class="glyphicon glyphicon-upload"></span> Guardar
               </div>
             </div>

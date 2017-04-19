@@ -12,7 +12,7 @@ class LoginDAO {
     function ingresar(LogIn $obj) {
         $query = "SELECT id,nombre,apellido,tipo_usuario_id "
                 . "from tb_usuarios "
-                . "where email='" . $obj->getEmail() . "' AND password='" . $obj->getPassword() . "'";    
+                . "where email='" . $obj->getEmail() . "' AND password='" . $obj->getPassword() . "' AND estado=0";    
         $this->repository->Execute($query);        
     }
     

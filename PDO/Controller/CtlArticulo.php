@@ -27,7 +27,7 @@ switch (strtolower($method)) {
                 $dtoArticulo->listarPorAutor($id, $pag);
             }
             else if($type == LISTAREDITORES){
-                $dtoArticulo->listarPorEditor();
+                $dtoArticulo->listarPorEditor($pag);
             }
             else if($type == LISTARREVISORES){
                 $dtoArticulo->listarPorRevisorAsignado($id);
@@ -40,7 +40,7 @@ switch (strtolower($method)) {
         /* CONTROL DE ACCIONES */
         $data = json_decode(json_encode($_POST));
         $obj = new Articulo($data->descripcion,$data->autor,$data->file);
-        $dtoArticulo->crear($obj);
+        $dtoArticulo->crear($obj);            
         break;
 
     case 'put':
@@ -49,11 +49,13 @@ switch (strtolower($method)) {
         $perfil = (isset($_REQUEST['perfil']) ? $_REQUEST['perfil'] : "");   
         $articulo = (isset($_REQUEST['articulo']) ? $_REQUEST['articulo'] : "");   
         $estado = (isset($_REQUEST['estado']) ? $_REQUEST['estado'] : "");   
+        $file = (isset($_REQUEST['file']) ? $_REQUEST['file'] : "");   
+        $descripcion = (isset($_REQUEST['descripcion']) ? $_REQUEST['descripcion'] : "");   
         
         if($perfil == EDITOR){            
             $dtoArticulo->editarPorEditor($articulo, $estado);
         }else if($perfil == AUTOR){
-
+            $dtoArticulo->editarPorAutor($articulo, $descripcion, $file);
         }        
         break;
 }
